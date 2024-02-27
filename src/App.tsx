@@ -95,20 +95,33 @@ const configBarProps1 = {
   yAxis: { domain: [0, 10000] },
 };
 
+const configLineProps1 = {
+  data: data,
+  height: 400,
+  width: 1000,
+  LineChartDetails: {
+    line: [
+      { dataKey: 'uv', fill: '#8884d8' },
+      { dataKey: 'pv', fill: '#82ca9d' },
+      { dataKey: 'amt', fill: 'red' },
+      { dataKey: 'tq', fill: 'green' },
+    ],
+  },
+  xAxis: { dataKey: 'name' },
+};
+
 function App() {
   return (
     <div className="App" style={{ marginTop: '40px', padding: '20px' }}>
-      {/* Recharts Bar test */}
-      <h1>{"Recharts Bar test1"}</h1>
+      <h1>{"Recharts example"}</h1>
         <BarChartRechart {...configBarProps1} />
-      {/* <SimpleLineChartReshart /> */}
+      <SimpleLineChartReshart {...configLineProps1} />
 
-      {/* Visx Bar */}
-      {/* <br></br> */}
-      <h1>{"visx Bar"}</h1>
+      <br></br>
+      <h1>{"visx example"}</h1>
       <BarChartVisx {...configBarProps1}  />
-      {/* <br></br> */}
-      {/* <LineChartVisx   /> */}
+      <br></br>
+      <LineChartVisx  {...configLineProps1} />
     </div>
   );
 }

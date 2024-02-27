@@ -4,23 +4,34 @@ import {
     Line,
     XAxis,
     YAxis,
-    CartesianGrid,
     Tooltip,
     Legend,
     ResponsiveContainer
 } from 'recharts';
 
-import { data } from "../data"
+
+interface LineChartRechartProps {
+    width: number,
+    height: number,
+    data: any,
+    LineChartDetails: {
+        line: {
+            dataKey: string,
+            fill: string
+        }[],
+    },
+    xAxis?: { dataKey: string },
+}
 
 
-export const SimpleLineChartReshart = () => {
+export const SimpleLineChartReshart = ({ LineChartDetails, data, height, width , xAxis }: LineChartRechartProps) => {
 
     return (
         <ResponsiveContainer width="100%" height="100%">
             <>
                 <LineChart
-                    width={1200}
-                    height={500}
+                    width={width}
+                    height={height}
                     data={data}
                     margin={{
                         top: 50,
@@ -29,13 +40,13 @@ export const SimpleLineChartReshart = () => {
                         bottom: 5,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey={xAxis?.dataKey} />
                     <YAxis />
                     <Tooltip labelStyle={{ color: 'black' }} />
                     <Legend />
-                    <Line type="monotone" dataKey='pv' stroke="#8884d8" />
-                    <Line type="monotone" dataKey='uv' stroke="#82ca9d" />
+                    {LineChartDetails && LineChartDetails.line.map(({dataKey , fill}) => (
+                        <Line type="basis" dataKey={dataKey} stroke={fill} />
+                    ))}
                 </LineChart>
             </>
         </ResponsiveContainer>

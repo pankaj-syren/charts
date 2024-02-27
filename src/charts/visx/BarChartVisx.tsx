@@ -62,7 +62,6 @@ const BarChartVisx = ({ data, height, width, barDetails, xAxis, yAxis }: BarChar
       tooltipData: datum
     });
   };
-
   return (
     <div >
       <svg
@@ -91,7 +90,6 @@ const BarChartVisx = ({ data, height, width, barDetails, xAxis, yAxis }: BarChar
           <AxisBottom
             scale={xScale}
             top={height}
-            // tickLabelProps={() => ({ textAnchor: 'middle', fontSize: 10 })}
           />
           <AxisLeft
             scale={yScale}
